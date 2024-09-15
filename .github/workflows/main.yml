@@ -27,7 +27,7 @@ jobs:
     name: Publish binaries
     needs: [all-builds]
     runs-on: ubuntu-20.04
-    if: ${{ github.ref_name == 'master' && github.ref_type == 'branch' && !contains(github.event.head_commit.message, '[no release]') }}
+    if: ${{ startsWith(github.ref_name, 'php/') && github.ref_type == 'branch' && !contains(github.event.head_commit.message, '[no release]') }}
 
     steps:
       - uses: actions/checkout@v4
