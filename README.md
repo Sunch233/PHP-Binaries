@@ -1,7 +1,15 @@
 # Custom PHP build scripts for PocketMine-MP
-[![Build status](https://github.com/pmmp/php-build-scripts/actions/workflows/main.yml/badge.svg)](https://github.com/pmmp/php-build-scripts/actions/workflows/main.yml)
 
-## Looking for prebuilt binaries? Head over to [releases](https://github.com/pmmp/PHP-Binaries/releases/latest)
+## Looking for prebuilt binaries? Head over to [releases](https://github.com/Sunch233/PHP-Binaries/releases/latest)
+
+### lastest build: PHP8.2.23
+
+| Device     | PM version |
+|------------|------------|
+| linux      |  PM4, PM5  |
+| Windows    |  PM4, PM5  |
+| MacOS      |  PM4, PM5  |
+| MacOS(arm) |  PM4, PM5  |
 
 ## compile.sh
 
