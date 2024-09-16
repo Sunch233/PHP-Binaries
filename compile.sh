@@ -1046,7 +1046,7 @@ fi
 if [ "$PM_VERSION_MAJOR" -ge 3 ]; then
 	get_github_extension "legacy-chunkutils" "$EXT_LEGACY_CHUNKUTILS_VERSION" "pmmp" "PocketMine-C-ChunkUtils"
 	CHUNK_EXT_FLAGS="--enable-pocketmine-chunkutils"
-else
+fi
 
 get_github_extension "yaml" "$EXT_YAML_VERSION" "php" "pecl-file_formats-yaml"
 #get_pecl_extension "yaml" "$EXT_YAML_VERSION"
