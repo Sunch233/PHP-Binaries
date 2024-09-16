@@ -18,6 +18,7 @@ EXT_PTHREADS_VERSION="4.2.2"
 EXT_PMMPTHREAD_VERSION="6.1.0"
 EXT_YAML_VERSION="2.2.3"
 EXT_LEVELDB_VERSION="317fdcd8415e1566fc2835ce2bdb8e19b890f9f3"
+EXT_LEGACY_CHUNKUTILS_VERSION="0.1.0"
 EXT_CHUNKUTILS2_VERSION="0.3.5"
 EXT_XDEBUG_VERSION="3.3.1"
 EXT_IGBINARY_VERSION="3.2.15"
@@ -1042,6 +1043,10 @@ else
 	THREAD_EXT_FLAGS="--enable-pthreads"
 fi
 
+if [ "$PM_VERSION_MAJOR" -le 3 ]; then
+	get_github_extension "legacy-chunkutils" "$EXT_LEGACY_CHUNKUTILS_VERSION" "pmmp" "PocketMine-C-ChunkUtils"
+	CHUNK_EXT_FLAGS="--enable-pocketmine-chunkutils"
+fi
 
 get_github_extension "yaml" "$EXT_YAML_VERSION" "php" "pecl-file_formats-yaml"
 #get_pecl_extension "yaml" "$EXT_YAML_VERSION"
@@ -1199,6 +1204,7 @@ $HAVE_MYSQLI \
 --enable-arraydebug \
 --enable-encoding \
 $HAVE_VALGRIND \
+$CHUNK_EXT_FLAGS \
 $CONFIGURE_FLAGS >> "$DIR/install.log" 2>&1
 write_compile
 if [ "$COMPILE_FOR_ANDROID" == "yes" ]; then
