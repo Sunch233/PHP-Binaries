@@ -1043,7 +1043,7 @@ else
 	THREAD_EXT_FLAGS="--enable-pthreads"
 fi
 
-if [ "$PM_VERSION_MAJOR" -ge 3 ]; then
+if [ "$PM_VERSION_MAJOR" -le 3 ]; then
 	get_github_extension "legacy-chunkutils" "$EXT_LEGACY_CHUNKUTILS_VERSION" "pmmp" "PocketMine-C-ChunkUtils"
 	CHUNK_EXT_FLAGS="--enable-pocketmine-chunkutils"
 fi
