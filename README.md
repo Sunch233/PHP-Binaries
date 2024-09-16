@@ -4,12 +4,12 @@
 
 ### lastest build: PHP8.2.23
 
-| Device     | PM version | JIT support |
-|------------|------------|-------------|
-| linux      |  PM4, PM5  |      yes    |
-| Windows    |  PM4, PM5  |      yes    |
-| MacOS      |  PM4, PM5  |      no     |
-| MacOS(arm) |  PM4, PM5  |      no     |
+| Device     |   PM version    | JIT support |
+|------------|-----------------|-------------|
+| linux      |  PM3, PM4, PM5  |      yes    |
+| Windows    |  PM3, PM4, PM5  |      yes    |
+| MacOS      |  PM3, PM4, PM5  |      no     |
+| MacOS(arm) |  PM3, PM4, PM5  |      no     |
 
 ## compile.sh
 
