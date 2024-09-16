@@ -222,13 +222,19 @@ cd /D php-src\ext
 set THREAD_EXT_FLAGS=""
 if "%PM_VERSION_MAJOR%" geq "5" (
     call :get-extension-zip-from-github "pmmpthread" "%PHP_PMMPTHREAD_VER%" "pmmp" "ext-pmmpthread" || exit 1
-    set THREAD_EXT_FLAGS="--with-pmmpthread=shared^--with-pmmpthread-sockets"
+    set THREAD_EXT_FLAGS="--with-pmmpthread=shared^ --with-pmmpthread-sockets"
 ) else (
     call :get-extension-zip-from-github "pthreads" "%PHP_PTHREADS_VER%" "pmmp" "ext-pmmpthread" || exit 1
 	set THREAD_EXT_FLAGS="--with-pthreads=shared"
 )
-call :get-extension-zip-from-github "yaml"                  "%PHP_YAML_VER%"                  "php"      "pecl-file_formats-yaml"  || exit 1
+
+set CHUNK_EXT_FLAGS="--enable-chunkutils2=shared"
+if "%PM_VERSION_MAJOR%" geq "3" (
+    call :get-extension-zip-from-github "legacy-chunkutils" "%PHP_LEGACY_CHUNKUTILS_VER%" "pmmp" "PocketMine-C-ChunkUtils" || exit 1
+    set CHUNK_EXT_FLAGS="--enable-pocketmine-chunkutils=shared^ --enable-chunkutils2=shared"
+)
 call :get-extension-zip-from-github "chunkutils2"           "%PHP_CHUNKUTILS2_VER%"           "pmmp"     "ext-chunkutils2"         || exit 1
+call :get-extension-zip-from-github "yaml"                  "%PHP_YAML_VER%"                  "php"      "pecl-file_formats-yaml"  || exit 1           "%PHP_CHUNKUTILS2_VER%"           "pmmp"     "ext-chunkutils2"         || exit 1
 call :get-extension-zip-from-github "igbinary"              "%PHP_IGBINARY_VER%"              "igbinary" "igbinary"                || exit 1
 call :get-extension-zip-from-github "leveldb"               "%PHP_LEVELDB_VER%"               "pmmp"     "php-leveldb"             || exit 1
 call :get-extension-zip-from-github "recursionguard"        "%PHP_RECURSIONGUARD_VER%"        "pmmp"     "ext-recursionguard"      || exit 1
@@ -268,7 +274,7 @@ call configure^
  --enable-arraydebug=shared^
  --enable-bcmath^
  --enable-calendar^
- --enable-chunkutils2=shared^
+ %CHUNK_EXT_FLAGS%^
  --enable-com-dotnet^
  --enable-ctype^
  --enable-encoding=shared^
@@ -351,7 +357,12 @@ if "%PM_VERSION_MAJOR%" geq "5" (
     (echo extension=php_pthreads.dll)>>"%php_ini%"
 )
 (echo extension=php_openssl.dll)>>"%php_ini%"
-(echo extension=php_chunkutils2.dll)>>"%php_ini%"
+if "%PM_VERSION_MAJOR%" geq "3" (
+    (echo extension=php_pocketmine_chunkutils.dll)>>"%php_ini%"
+    (echo ;extension=php_chunkutils2.dll)>>"%php_ini%"
+) else (
+    (echo extension=php_chunkutils2.dll)>>"%php_ini%"
+)
 (echo extension=php_igbinary.dll)>>"%php_ini%"
 (echo extension=php_leveldb.dll)>>"%php_ini%"
 (echo extension=php_crypto.dll)>>"%php_ini%"
