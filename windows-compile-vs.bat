@@ -230,7 +230,7 @@ if "%PM_VERSION_MAJOR%" geq "5" (
 )
 
 set CHUNK_EXT_FLAGS="--enable-chunkutils2=shared"
-if "%PM_VERSION_MAJOR%" geq "3" (
+if "%PM_VERSION_MAJOR%" leq "3" (
     call :get-extension-zip-from-github "legacy-chunkutils" "%PHP_LEGACY_CHUNKUTILS_VER%" "pmmp" "PocketMine-C-ChunkUtils" || exit 1
     set CHUNK_EXT_FLAGS="--enable-pocketmine-chunkutils=shared^ --enable-chunkutils2=shared"
 )
@@ -358,7 +358,7 @@ if "%PM_VERSION_MAJOR%" geq "5" (
     (echo extension=php_pthreads.dll)>>"%php_ini%"
 )
 (echo extension=php_openssl.dll)>>"%php_ini%"
-if "%PM_VERSION_MAJOR%" geq "3" (
+if "%PM_VERSION_MAJOR%" leq "3" (
     (echo extension=php_pocketmine_chunkutils.dll)>>"%php_ini%"
     (echo ;extension=php_chunkutils2.dll)>>"%php_ini%"
 ) else (
