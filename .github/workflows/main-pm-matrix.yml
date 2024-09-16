@@ -97,7 +97,7 @@ jobs:
           export PATH="/usr/local/opt/bison/bin:$PATH"
           set -ex
           trap "exit 1" ERR
-          ./compile.sh -t ${{ matrix.target-name }} -j4 -g -J -P ${{ inputs.pm-version-major }} -c ./download_cache -D
+          ./compile.sh -t ${{ matrix.target-name }} -j4 -g -P ${{ inputs.pm-version-major }} -c ./download_cache -D
           
       - name: Create tarball
         run: |
