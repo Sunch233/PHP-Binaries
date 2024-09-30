@@ -6,7 +6,7 @@ set PHP_MAJOR_VER=8.2
 set PHP_VER=%PHP_MAJOR_VER%.24
 set PHP_GIT_REV=php-%PHP_VER%
 set PHP_DISPLAY_VER=%PHP_VER%
-set PHP_SDK_VER=2.2.0
+set PHP_SDK_VER=2.3.0
 set PATH=C:\Program Files\7-Zip;C:\Program Files (x86)\GnuWin32\bin;%PATH%
 set VC_VER=vs16
 set ARCH=x64
@@ -113,7 +113,7 @@ if exist "%SOURCES_PATH%" (
 )
 
 call :pm-echo "Getting SDK..."
-git clone https://github.com/OSTC/php-sdk-binary-tools.git -b php-sdk-%PHP_SDK_VER% --depth=1 -q "%SOURCES_PATH%" >>"%log_file%" 2>&1 || call :pm-fatal-error "Failed to download SDK"
+git clone https://github.com/php/php-sdk-binary-tools.git -b php-sdk-%PHP_SDK_VER% --depth=1 -q "%SOURCES_PATH%" >>"%log_file%" 2>&1 || call :pm-fatal-error "Failed to download SDK"
 
 cd /D "%SOURCES_PATH%"
 
