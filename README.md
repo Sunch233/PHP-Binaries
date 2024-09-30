@@ -2,7 +2,7 @@
 
 ## Looking for prebuilt binaries? Head over to [releases](https://github.com/Sunch233/PHP-Binaries/releases/latest)
 
-### lastest build: PHP8.1.29
+### lastest build: PHP8.1.30
 
 | Device     |   PM version    | JIT support |
 |------------|-----------------|-------------|
