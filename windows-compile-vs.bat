@@ -68,6 +68,13 @@ if "%PHP_DEBUG_BUILD%"=="0" (
 	call :pm-echo "Building debug binaries"
 )
 
+for /f "skip=1" %%i in ('wmic os get osarchitecture') do (
+	if %%i=="ARM" (
+		call :pm-echo "Detected that this is an ARM device, now try ARM compilation (untested)"
+		set ARCH=arm64
+	)
+)
+
 if "%PHP_JIT_SUPPORT%"=="1" (
     set PHP_JIT_ENABLE_ARG=on
     call :pm-echo "Compiling JIT support in OPcache (unstable)"
