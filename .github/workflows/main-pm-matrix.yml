@@ -129,8 +129,15 @@ jobs:
           if-no-files-found: error
 
   windows:
-    name: Windows
+    name: Windows ${{ matrix.artifact-name }}
     runs-on: windows-2019
+    strategy:
+      matrix:
+        include:
+          - target-arch: x64
+            artifact-name: x64
+          - target-arch: arm64
+            artifact-name: arm
 
     steps:
       - uses: actions/checkout@v4
@@ -145,6 +152,7 @@ jobs:
           SOURCES_PATH: ${{ github.workspace }}\pocketmine-php-sdk
           PM_VERSION_MAJOR: ${{ inputs.pm-version-major }}
           PHP_JIT_SUPPORT: 1
+          ARCH: ${{ matrix.target-arch}}
 
       - name: Rename artifacts
         run: |
@@ -159,7 +167,7 @@ jobs:
         with:
           name: Windows-PM${{ inputs.pm-version-major }}
           path: |
-            PHP-Windows-x64*.zip
+            PHP-Windows-${{ matrix.artifact-name}}*.zip
             compile.log
             windows-compile-vs.bat
           if-no-files-found: error
