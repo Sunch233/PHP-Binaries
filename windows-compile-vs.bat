@@ -9,7 +9,9 @@ set PHP_DISPLAY_VER=%PHP_VER%
 set PHP_SDK_VER=2.3.0
 set PATH=C:\Program Files\7-Zip;C:\Program Files (x86)\GnuWin32\bin;%PATH%
 set VC_VER=vs16
-set ARCH=x64
+if "%ARCH%"=="" (
+	set ARCH=x64
+)
 set VS_PATH=
 set CMAKE_TARGET=
 if "%PHP_DEBUG_BUILD%"=="" (
@@ -66,13 +68,6 @@ if "%PHP_DEBUG_BUILD%"=="0" (
 	REM I don't like this, but YAML will crash if it's not built with the same target as PHP
 	set MSBUILD_CONFIGURATION=Debug
 	call :pm-echo "Building debug binaries"
-)
-
-for /f "skip=1" %%i in ('wmic os get osarchitecture') do (
-	if %%i=="ARM" (
-		call :pm-echo "Detected that this is an ARM device, now try ARM compilation (untested)"
-		set ARCH=arm64
-	)
 )
 
 if "%PHP_JIT_SUPPORT%"=="1" (
