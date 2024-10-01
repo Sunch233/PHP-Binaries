@@ -13,6 +13,9 @@ if "%ARCH%"=="" (
 	set ARCH=x64
 )
 set VS_PATH=
+if "%VS_BUILD_TYPE%"=="" (
+	set VS_BUILD_TYPE=x64
+)
 set CMAKE_TARGET=
 if "%PHP_DEBUG_BUILD%"=="" (
 	set PHP_DEBUG_BUILD=0
@@ -98,7 +101,7 @@ if "%VS_EDITION%"=="" (
 	set VS_EDITION=Community
 )
 
-call "%VS_PATH%\%VS_EDITION%\VC\Auxiliary\Build\vcvarsall.bat" %ARCH% >>"%log_file%" 2>&1 || call :pm-fatal-error "Error initializing Visual Studio environment"
+call "%VS_PATH%\%VS_EDITION%\VC\Auxiliary\Build\vcvarsall.bat" %VS_BUILD_TYPE% >>"%log_file%" 2>&1 || call :pm-fatal-error "Error initializing Visual Studio environment"
 :batchfiles-are-stupid
 move "%log_file%" "%log_file%" >nul 2>nul || goto :batchfiles-are-stupid
 
